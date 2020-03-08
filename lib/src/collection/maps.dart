@@ -21,4 +21,4 @@ extension Maps<K, V> on Map<K, V> {
 }
 
 /// Converts [MapEntry] to [Pair] with key being first component and value being second.
-Pair<K, V> toPair<K, V>(MapEntry<K, V> entry) => Pair(entry.key, entry.value);
+Pair<K, V> parseMapEntryAsPair<K, V>(MapEntry<K, V> entry) => Pair(entry.key, entry.value);
