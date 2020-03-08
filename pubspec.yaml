@@ -1,7 +1,7 @@
 name: wedzera
 description: >-
   Wedzera is an extension toolkit for Dart, It contains many convenient, functional, and easy-to-use functions.
-version: 0.0.1+1
+version: 0.0.1+2
 homepage: https://github.com/nikeorever/wedzera
 
 environment:
