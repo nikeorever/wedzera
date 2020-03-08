@@ -30,6 +30,8 @@ Libraries
 
 `parseTripleAsList` converts this triple into a list.
 
+`Result` a discriminated union that encapsulates a successful outcome with a value of type T or a failure with an arbitrary `Exception` exception.
+
 `repeat` executes the given function action specified number of times.
 
 [wedzera.core]: https://pub.dev/documentation/wedzera/latest/wedzera.core/wedzera.core-library.html
