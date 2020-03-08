@@ -1,0 +1,16 @@
+# Pub
+packages
+pubspec.lock
+build/
+.dart_tool/
+.pub
+.packages
+
+# IDE
+.project
+.settings
+.idea
+*.iml
+
+# Temp files
+*~
