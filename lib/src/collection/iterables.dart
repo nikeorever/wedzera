@@ -7,4 +7,13 @@ extension Iterables<T> on Iterable<T> {
 
   /// Returns this Collection if it's not `null` and the empty iterable otherwise.
   Iterable<T> orEmpty() => this ?? const Iterable.empty();
+
+  /// Returns `true` if all elements match the given [predicate].
+  bool all(bool Function(T) predicate) {
+    if (isNullOrEmpty) return true;
+    for (final element in this) {
+      if (!predicate(element)) return false;
+    }
+    return true;
+  }
 }

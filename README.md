@@ -8,11 +8,31 @@ Libraries
 
 ## [wedzera.collection][]
 
-`Iterables` is an extension library for `Iterable`
+`MutableList` creates a new mutable list with the specified size, where each element is calculated by calling the specified init function.
 
-`Maps` is an extension library for `Map`
+`mapOf` Returns a new `Map` with the specified contents, given as a list of pairs where the first component is the key and the second is the value.
+
+`Iterables` is an extension library for `Iterable`.
+
+`Maps` is an extension library for `Map`.
 
 [wedzera.collection]: https://pub.dev/documentation/wedzera/latest/wedzera.collection/wedzera.collection-library.html
+
+## [wedzera.core][]
+
+`Pair` represents a generic pair of two values.
+
+`parsePairAsList` converts this pair into a list.
+
+`parsePairAsMapEntry` converts `Pair` to `MapEntry`.
+
+`Triple` represents a triad of values.
+
+`parseTripleAsList` converts this triple into a list.
+
+`repeat` executes the given function action specified number of times.
+
+[wedzera.core]: https://pub.dev/documentation/wedzera/latest/wedzera.core/wedzera.core-library.html
 
 ## [wedzera.time][]
 

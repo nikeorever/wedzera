@@ -1,5 +1,6 @@
 import 'package:test/test.dart';
 import 'package:wedzera/collection.dart';
+import 'package:wedzera/core.dart';
 
 void main() {
   group('iterables Tests', () {
@@ -23,6 +24,24 @@ void main() {
     test('Null map Test', () {
       Map<int, int> nullMap;
       expect(nullMap.isNullOrEmpty, isTrue);
+    });
+  });
+
+  group('collection Test', () {
+    test('mapOf with same key Test', () {
+      final map = mapOf([Pair(1, 2), Pair(1, 3), Pair(2, 2)]);
+      expect(map[1], equals(3));
+    });
+
+    test('mapOf with different key Test', () {
+      final map = mapOf([Pair(1, 2), Pair(2, 3), Pair(3, 2)]);
+      expect(map.values.fold(0, (acc, ele) => acc + ele), equals(7));
+    });
+
+    test('MutableList Test', () {
+      final list= MutableList(6, (index) => '#$index');
+      expect(list.length, equals(6));
+      expect(list[5], equals('#5'));
     });
   });
 }
