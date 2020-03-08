@@ -6,5 +6,5 @@ extension Iterables<T> on Iterable<T> {
   bool get isNullOrEmpty => this == null || isEmpty;
 
   /// Returns this Collection if it's not `null` and the empty iterable otherwise.
-  Iterable<T> orEmpty() => this ?? Iterable.empty();
+  Iterable<T> orEmpty() => this ?? const Iterable.empty();
 }

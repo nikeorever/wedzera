@@ -12,4 +12,4 @@ Libraries
 
 `Maps` is an extension library for `Map`
 
-[wedzera.collection]: https://pub.dev/documentation/quiver/latest/quiver.collection/quiver.collection-library.html
+[wedzera.collection]: https://pub.dev/documentation/wedzera/latest/wedzera.collection/wedzera.collection-library.html
