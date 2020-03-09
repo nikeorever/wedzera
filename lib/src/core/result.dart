@@ -54,22 +54,13 @@ class Result<T> {
     }
   }
 
-  /// Returns the encapsulated value if this instance represents [success][Result.isSuccess] or throws the encapsulated [Exception] exception
-  /// if it is [failure][Result.isFailure].
-  ///
-  /// This function is a shorthand for `getOrElse { throw it }` (see [getOrElse]).
-  T getOrThrow() {
-    throwOnFailure();
-    return value;
-  }
-
   /// Returns the encapsulated value if this instance represents [success][Result.isSuccess] or the
   /// result of [onFailure] function for the encapsulated [Exception] exception if it is [failure][Result.isFailure].
   ///
   /// Note, that this function rethrows any [Exception] exception thrown by [onFailure] function.
   ///
   /// This function is a shorthand for `fold(onSuccess = { it }, onFailure = onFailure)` (see [fold]).
-  R getOrElse<R, T extends R>(R onFailure(Exception exception)) {
+  T getOrElse(T onFailure(Exception exception)) {
     var exception = exceptionOrNull();
     if (exception == null) {
       return value;
@@ -82,8 +73,17 @@ class Result<T> {
   /// [defaultValue] if it is [failure][Result.isFailure].
   ///
   /// This function is a shorthand for `getOrElse { defaultValue }` (see [getOrElse]).
-  R getOrDefault<R, T extends R>(R defaultValue) {
+  T getOrDefault(T defaultValue) {
     if (isFailure) return defaultValue;
+    return value;
+  }
+
+  /// Returns the encapsulated value if this instance represents [success][Result.isSuccess] or throws the encapsulated [Exception] exception
+  /// if it is [failure][Result.isFailure].
+  ///
+  /// This function is a shorthand for `getOrElse { throw it }` (see [getOrElse]).
+  T getOrThrow() {
+    throwOnFailure();
     return value;
   }
 

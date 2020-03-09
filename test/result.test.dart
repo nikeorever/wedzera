@@ -1,3 +1,4 @@
+
 import 'package:test/test.dart';
 import 'package:wedzera/core.dart';
 
@@ -33,11 +34,11 @@ void main() {
     });
     test('getOrElse Test', () {
       expect(result.getOrElse((exception) {
-        return _Parent();
-      }), isA<_Parent>());
+        return _Child();
+      }), isA<_Child>());
     });
     test('getOrDefault Test', () {
-      expect(result.getOrDefault(_Parent()), isA<_Parent>());
+      expect(result.getOrDefault(_Child()), isA<_Child>());
     });
     test('map Test', () {
       expect(result.map((child) => _Parent()).isFailure, isTrue);
@@ -48,6 +49,58 @@ void main() {
     test('fold Test', () {
       expect(result.fold((child) => _Parent(), (exception) => _Parent()),
           isA<_Parent>());
+    });
+  });
+
+  group('Success Result Tests', () {
+    Result<_Child> result;
+    setUp(() {
+      result = runCatching<_Child>(() {
+        return _Child();
+      });
+    });
+    test('isSuccess Test', () {
+      expect(result.isSuccess, isTrue);
+    });
+    test('isFailure Test', () {
+      expect(result.isFailure, isFalse);
+    });
+    test('getOrNull Test', () {
+      expect(result.getOrNull(), isA<_Child>());
+    });
+    test('exceptionOrNull Test', () {
+      expect(result.exceptionOrNull(), isNull);
+    });
+    test('throwOnFailure Test', () {
+      expect(() {
+        result.throwOnFailure();
+      }, returnsNormally);
+    });
+    test('getOrThrow Test', () {
+      expect(result.getOrThrow(), isA<_Child>());
+    });
+    test('getOrElse Test', () {
+      expect(result.getOrElse((exception) {
+        return _Child();
+      }), isA<_Child>());
+    });
+    test('getOrDefault Test', () {
+      expect(result.getOrDefault(_Child()), isA<_Parent>());
+    });
+    test('map Test', () {
+      expect(result.map((child) => _Parent()).isSuccess, isTrue);
+    });
+    test('mapCatching with No Exception Transform Test', () {
+      expect(result.mapCatching((child) => _Parent()).value, isA<_Parent>());
+    });
+    test('mapCatching with Exception Transform Test', () {
+      expect((){
+        result.mapCatching((child) => throw const FormatException()).throwOnFailure();
+      }, throwsFormatException);
+    });
+    test('fold Test', () {
+      expect(result.fold((child) => 'onSuccess', (exception) => 'onFailure'),
+          equals('onSuccess'));
     });
   });
 }
