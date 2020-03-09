@@ -154,6 +154,9 @@ class Result<T> {
   /// Returns an instance that encapsulates the given [Exception] [exception] as failure.
   static Result<T> failure<T>(Exception exception) =>
       Result(_createFailure(exception));
+
+  /// Creates an instance of [Result.Failure] class
+  static Object _createFailure(Exception exception) => Failure(exception);
 }
 
 class Failure {
@@ -174,8 +177,6 @@ class Failure {
     return 'Failure($exception)';
   }
 }
-
-Object _createFailure(Exception exception) => Failure(exception);
 
 /// Calls the specified function [block] and returns its encapsulated result
 /// if invocation was successful, catching and encapsulating any thrown
