@@ -2,6 +2,7 @@ library wedzera.core;
 
 part 'src/core/triple.dart';
 part 'src/core/result.dart';
+part 'src/core/strings.dart';
 
 /// Executes the given function [action] specified number of [times].
 /// A zero-based index of current iteration is passed as a parameter to [action].
