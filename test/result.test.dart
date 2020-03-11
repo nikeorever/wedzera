@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:test/test.dart';
 import 'package:wedzera/core.dart';
@@ -94,13 +95,28 @@ void main() {
       expect(result.mapCatching((child) => _Parent()).value, isA<_Parent>());
     });
     test('mapCatching with Exception Transform Test', () {
-      expect((){
-        result.mapCatching((child) => throw const FormatException()).throwOnFailure();
+      expect(() {
+        result
+            .mapCatching((child) => throw const FormatException())
+            .throwOnFailure();
       }, throwsFormatException);
     });
     test('fold Test', () {
       expect(result.fold((child) => 'onSuccess', (exception) => 'onFailure'),
           equals('onSuccess'));
+    });
+  });
+
+  group('runCatchingAsync Test', () {
+    test('async read lines of LICENSE Test', () async {
+      final result = await runCatchingAsync<List<String>>(() {
+        final file = File('LICENSE');
+        return file.readAsLines();
+      });
+      expect(
+          result.getOrThrow()[0].trim(),
+          equals(
+              'Copyright 2020, the Dart project authors. All rights reserved.'));
     });
   });
 }

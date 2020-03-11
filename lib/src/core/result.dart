@@ -188,3 +188,14 @@ Result<R> runCatching<R>(R block()) {
     return Result.failure(e);
   }
 }
+
+/// Calls the specified async function [block] and returns its encapsulated result
+/// if invocation was successful, catching and encapsulating any thrown
+/// exception as a failure.
+Future<Result<R>> runCatchingAsync<R>(Future<R> block()) async {
+  try {
+    return Result.success(await block());
+  } catch (e) {
+    return Result.failure(e);
+  }
+}
