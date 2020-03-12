@@ -7,10 +7,13 @@ Libraries
 --------------
 
 ## [wedzera.collection][]
+`list` creates a new unmodifiable `List` with the specified size, where each element is calculated by calling the specified init function.
 
-`MutableList` creates a new mutable list with the specified size, where each element is calculated by calling the specified init function.
+`mutableList` creates a new mutable `List` with the specified size, where each element is calculated by calling the specified init function.
 
-`mapOf` Returns a new `Map` with the specified contents, given as a list of pairs where the first component is the key and the second is the value.
+`mapOf` returns a new unmodifiable `Map` with the specified contents, given as a list of pairs where the first component is the key and the second is the value.
+
+`mutableMapOf` returns a new mutable `Map` with the specified contents, given as a list of pairs where the first component is the key and the second is the value.
 
 `Iterables` is an extension library for `Iterable`.
 

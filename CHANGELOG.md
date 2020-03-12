@@ -1,3 +1,13 @@
+## 0.0.1+4 - 2020-03-12
+### Added
+- Add toInt()/toIntOrNull(), toDouble()/toDoubleOrNull() in String extension
+### Changed
+- Map#mapToList() return an unmodifiable list instead of fixed-length list now
+- pairToList() return an unmodifiable list instead of fixed-length list now
+- tripleToList() return an unmodifiable list instead of fixed-length list now
+- list represent unmodifiable list, mutableList represent mutable list
+
+
 ## 0.0.1+3 - 2020-03-12
 ### Changed
 - Change mapToMutableList() to mapToList() in maps.dart, FIXED-LENGTH list will be returned
