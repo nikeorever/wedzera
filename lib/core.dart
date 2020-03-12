@@ -3,6 +3,7 @@ library wedzera.core;
 import 'package:quiver/strings.dart';
 import 'package:quiver/check.dart';
 
+part 'src/core/error_stacktrace.dart';
 part 'src/core/triple.dart';
 part 'src/core/result.dart';
 part 'src/core/strings.dart';
