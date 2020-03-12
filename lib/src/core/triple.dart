@@ -21,8 +21,9 @@ class Pair<A, B> {
   String toString() => '($first, $second)';
 }
 
-/// Converts this pair into a list.
-List<T> parsePairAsMutableList<T>(Pair<T, T> pair) => [pair.first, pair.second];
+/// Converts this pair into a fixed-length list.
+List<T> pairToList<T>(Pair<T, T> pair) =>
+    List.from([pair.first, pair.second], growable: false);
 
 /// Represents a triad of values
 ///
@@ -45,6 +46,6 @@ class Triple<A, B, C> {
   String toString() => '($first, $second, $third)';
 }
 
-/// Converts this triple into a list.
-List<T> parseTripleAsMutableList<T>(Triple<T, T, T> triple) =>
-    [triple.first, triple.second, triple.third];
+/// Converts this triple into a fixed-length list.
+List<T> tripleToList<T>(Triple<T, T, T> triple) =>
+    List.from([triple.first, triple.second, triple.third], growable: false);
