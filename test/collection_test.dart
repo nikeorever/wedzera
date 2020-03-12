@@ -38,8 +38,29 @@ void main() {
       expect(map.values.fold(0, (acc, ele) => acc + ele), equals(7));
     });
 
-    test('MutableList Test', () {
-      final list= MutableList(6, (index) => '#$index');
+    test('mapOf with modify Test', () {
+      final map = mapOf([Pair(1, 2), Pair(2, 3), Pair(3, 2)]);
+      expect(() {
+        map.clear();
+      }, throwsUnsupportedError);
+    });
+
+    test('mutableMapOf Test', () {
+      final map = mutableMapOf([Pair(1, 2), Pair(2, 3), Pair(3, 2)]);
+      expect(() {
+        map.clear();
+      }, returnsNormally);
+    });
+
+    test('list Test', () {
+      final li = list(6, (index) => '#$index');
+      expect(() {
+        li.add('#60');
+      }, throwsUnsupportedError);
+    });
+
+    test('mutableList Test', () {
+      final list = mutableList(6, (index) => '#$index');
       expect(list.length, equals(6));
       expect(list[5], equals('#5'));
     });

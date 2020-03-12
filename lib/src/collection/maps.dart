@@ -5,14 +5,14 @@ extension Maps<K, V> on Map<K, V> {
   /// Returns `true` if this nullable map is either null or empty.
   bool get isNullOrEmpty => this == null || isEmpty;
 
-  /// Returns a fixed-length list containing the results of applying the given
+  /// Returns an unmodifiable list containing the results of applying the given
   /// [transform] function to each entry in the original map.
   List<R> mapToList<R>(R Function(K k, V v) transform) {
     final destination = <R>[];
     for (final entry in entries) {
       destination.add(transform(entry.key, entry.value));
     }
-    return destination.toList(growable: false);
+    return List.unmodifiable(destination);
   }
 
   /// Returns the value for the given key, or the result of the [defaultValue]

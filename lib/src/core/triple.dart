@@ -21,9 +21,9 @@ class Pair<A, B> {
   String toString() => '($first, $second)';
 }
 
-/// Converts this pair into a fixed-length list.
+/// Converts this pair into an unmodifiable list.
 List<T> pairToList<T>(Pair<T, T> pair) =>
-    List.from([pair.first, pair.second], growable: false);
+    List.unmodifiable([pair.first, pair.second]);
 
 /// Represents a triad of values
 ///
@@ -46,6 +46,6 @@ class Triple<A, B, C> {
   String toString() => '($first, $second, $third)';
 }
 
-/// Converts this triple into a fixed-length list.
+/// Converts this triple into an unmodifiable list.
 List<T> tripleToList<T>(Triple<T, T, T> triple) =>
-    List.from([triple.first, triple.second, triple.third], growable: false);
+    List.unmodifiable([triple.first, triple.second, triple.third]);
