@@ -37,6 +37,8 @@ Libraries
 
 `repeat` executes the given function action specified number of times.
 
+`ErrorAndStacktrace` an Object which containing both an error and the corresponding stack trace.
+
 [wedzera.core]: https://pub.dev/documentation/wedzera/latest/wedzera.core/wedzera.core-library.html
 
 ## [wedzera.system][]
