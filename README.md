@@ -39,8 +39,10 @@ Libraries
 
 [wedzera.core]: https://pub.dev/documentation/wedzera/latest/wedzera.core/wedzera.core-library.html
 
-## [wedzera.time][]
+## [wedzera.system][]
 
 `measureTimeMillis` executes the given block and returns elapsed time in milliseconds.
 
-[wedzera.time]: https://pub.dev/documentation/wedzera/latest/wedzera.time/wedzera.time-library.html
+`measureTimeMicros` executes the given block and returns elapsed time in microseconds.
+
+[wedzera.system]: https://pub.dev/documentation/wedzera/latest/wedzera.time/wedzera.system-library.html
