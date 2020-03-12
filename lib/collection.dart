@@ -26,5 +26,5 @@ List<T> MutableList<T>(int size, T Function(int index) init) {
 /// Entries of the map are iterated in the order they were specified.
 ///
 Map<K, V> mapOf<K, V>(Iterable<Pair<K, V>> pairs) {
-  return Map.fromEntries(pairs.map(parsePairAsMapEntry));
+  return Map.fromEntries(pairs.map((pair) => pair.toMapEntry()));
 }

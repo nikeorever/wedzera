@@ -24,7 +24,7 @@ Libraries
 
 `parsePairAsList` converts this pair into a list.
 
-`parsePairAsMapEntry` converts `Pair` to `MapEntry`.
+`toMapEntry` converts `Pair` to `MapEntry`.
 
 `Triple` represents a triad of values.
 

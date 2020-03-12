@@ -12,6 +12,9 @@ class Pair<A, B> {
   final A first;
   final B second;
 
+  /// Converts [Pair] to [MapEntry]
+  MapEntry<A, B> toMapEntry() => MapEntry(first, second);
+
   /// Returns string representation of the [Pair] including its [first]
   /// and [second] values.
   @override
@@ -20,10 +23,6 @@ class Pair<A, B> {
 
 /// Converts this pair into a list.
 List<T> parsePairAsMutableList<T>(Pair<T, T> pair) => [pair.first, pair.second];
-
-/// Converts [Pair] to [MapEntry]
-MapEntry<A, B> parsePairAsMapEntry<A, B>(Pair<A, B> pair) =>
-    MapEntry(pair.first, pair.second);
 
 /// Represents a triad of values
 ///

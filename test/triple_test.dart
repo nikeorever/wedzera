@@ -13,8 +13,8 @@ void main() {
       expect(parsePairAsMutableList(pair).length, equals(2));
     });
 
-    test('parsePairAsMapEntry Test', () {
-      final entry = parsePairAsMapEntry(pair);
+    test('toMapEntry Test', () {
+      final entry = pair.toMapEntry();
       expect(entry.key, equals(pair.first));
       expect(entry.value, equals(pair.second));
     });
@@ -32,8 +32,8 @@ void main() {
       expect(parseTripleAsMutableList(triple).length, equals(3));
     });
 
-    test('parsePairAsMapEntry Test', () {
-      final entry = parsePairAsMapEntry(pair);
+    test('toMapEntry Test', () {
+      final entry = pair.toMapEntry();
       expect(entry.key, equals(pair.first));
       expect(entry.value, equals(pair.second));
     });
