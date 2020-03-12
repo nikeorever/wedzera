@@ -14,4 +14,58 @@ extension Strings on String {
   /// of calling [defaultValue] function
   String ifBlank(String Function() defaultValue) =>
       isBlank(this) ? defaultValue() : this;
+
+  /// Parses the string as an [int] number and returns the result.
+  ///
+  /// For nullable string, You should do as follow:
+  /// ```dart
+  /// nullableStr?.toInt()
+  /// ```
+  /// Throws a [RangeError] if [radix] is not a valid radix[2..36] for string to number conversion.
+  /// Throws a [FormatException] if the string is not a valid representation of a number.
+  /// Throws a [ArgumentError] if string is `null`.
+  int toInt({int radix = 10}) {
+    checkNotNull(this);
+    return int.parse(this, radix: radix);
+  }
+
+  /// Parses the string as an [int] number and returns the result
+  /// or `null` if the string is not a valid representation of a number.
+  ///
+  /// For nullable string, You should do as follow:
+  /// ```dart
+  /// nullableStr?.toIntOrNull()
+  /// ```
+  /// Throws a [RangeError] if [radix] is not a valid radix[2..36] for string to number conversion.
+  /// Throws a [ArgumentError] if string is `null`.
+  int toIntOrNull({int radix = 10}) {
+    checkNotNull(this);
+    return int.tryParse(this, radix: radix);
+  }
+
+  /// Parses the string as a [double] number and returns the result.
+  ///
+  /// For nullable string, You should do as follow:
+  /// ```dart
+  /// nullableStr?.toDouble()
+  /// ```
+  /// Throws a [FormatException] if the string is not a valid representation of a number.
+  /// Throws a [ArgumentError] if string is `null`.
+  double toDouble() {
+    checkNotNull(this);
+    return double.parse(this);
+  }
+
+  /// Parses the string as a [double] number and returns the result
+  /// or `null` if the string is not a valid representation of a number.
+  ///
+  /// For nullable string, You should do as follow:
+  /// ```dart
+  /// nullableStr?.toDoubleOrNull()
+  /// ```
+  /// Throws a [ArgumentError] if string is `null`.
+  double toDoubleOrNull() {
+    checkNotNull(this);
+    return double.tryParse(this);
+  }
 }

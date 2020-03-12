@@ -1,6 +1,7 @@
 library wedzera.core;
 
 import 'package:quiver/strings.dart';
+import 'package:quiver/check.dart';
 
 part 'src/core/triple.dart';
 part 'src/core/result.dart';
