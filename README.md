@@ -25,13 +25,13 @@ Libraries
 
 `Pair` represents a generic pair of two values.
 
-`pairToList` converts this pair into a fixed-length list.
+`pairToList` converts this pair into an unmodifiable list.
 
 `toMapEntry` converts `Pair` to `MapEntry`.
 
 `Triple` represents a triad of values.
 
-`tripleToList` converts this triple into a fixed-length list.
+`tripleToList` converts this triple into an unmodifiable list.
 
 `Result` a discriminated union that encapsulates a successful outcome with a value of type T or a failure with an arbitrary `Exception` exception.
 
