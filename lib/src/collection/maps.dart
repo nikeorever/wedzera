@@ -1,6 +1,6 @@
 part of wedzera.collection;
 
-/// Extension library for [Iterable]
+/// Extension class for [Iterable]
 extension Maps<K, V> on Map<K, V> {
   /// Returns `true` if this nullable map is either null or empty.
   bool get isNullOrEmpty => this == null || isEmpty;
@@ -18,6 +18,12 @@ extension Maps<K, V> on Map<K, V> {
   /// Returns the value for the given key, or the result of the [defaultValue]
   /// function if there was no entry for the given key.
   V getOrElse(K key, V Function() defaultValue) => this[key] ?? defaultValue();
+
+  /// Returns a new unmodifiable map containing all key-value pairs from the original map.
+  Map<K, V> toMap() => Map.unmodifiable(this);
+
+  /// Returns a new mutable map containing all key-value pairs from the original map.
+  Map<K, V> toMutableMap() => Map.of(this);
 }
 
 /// Converts [MapEntry] to [Pair] with key being first component and value being second.

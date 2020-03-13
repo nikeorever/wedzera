@@ -15,9 +15,9 @@ Libraries
 
 `mutableMapOf` returns a new mutable `Map` with the specified contents, given as a list of pairs where the first component is the key and the second is the value.
 
-`Iterables` is an extension library for `Iterable`.
+`Iterables` is an extension class for `Iterable`.
 
-`Maps` is an extension library for `Map`.
+`Maps` is an extension class for `Map`.
 
 [wedzera.collection]: https://pub.dev/documentation/wedzera/latest/wedzera.collection/wedzera.collection-library.html
 
