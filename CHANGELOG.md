@@ -1,3 +1,14 @@
+## 0.0.2 - 2020-03-13
+### Added
+- Add wedzera.system
+- Add measureTimeMicros()
+- Add ErrorAndStacktrace class
+- Add extension methods for Iterable
+- Add extension methods for Map
+### Removed
+- Remove wedzera.time
+
+
 ## 0.0.1+4 - 2020-03-12
 ### Added
 - Add toInt()/toIntOrNull(), toDouble()/toDoubleOrNull() in String extension
