@@ -12,5 +12,8 @@ build/
 .idea
 *.iml
 
+# VSCode
+.vscode
+
 # Temp files
 *~
