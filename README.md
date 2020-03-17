@@ -1,12 +1,11 @@
-Wedzera
-======
+# Wedzera
 
 Wedzera is an extension toolkit for Dart, It contains many convenient, functional, and easy-to-use functions.
 
-Libraries
---------------
+## Libraries
 
 ## [wedzera.collection][]
+
 `list` creates a new unmodifiable `List` with the specified size, where each element is calculated by calling the specified init function.
 
 `mutableList` creates a new mutable `List` with the specified size, where each element is calculated by calling the specified init function.
