@@ -28,9 +28,43 @@ void main() {
           equals('C3CE'));
     });
 
+    test('whereTypeToMutableList Test', () {
+      expect(
+          ['A', 'B', 'C3', 'D', 10, 'F', 10]
+              .whereTypeToMutableList<int>()
+              .sumBy((t) => t),
+          equals(20));
+    });
+
+    test('whereToMutableList Test', () {
+      expect(
+          ['A', 'B', 'C3', 'D', 10, 'F', 10]
+              .whereToMutableList(Predicates.isInstance<int>())
+              .sumBy((t) => t),
+          equals(20));
+    });
+
+    test('whereNotNullToMutableList Test', () {
+      expect([10, null, 10, null].whereNotNullToMutableList().sumBy((t) => t),
+          equals(20));
+    });
+
+    test('whereNot Test', () {
+      expect([10, null, 10, null].whereNot(Predicates.isNull()).sumBy((t) => t),
+          equals(20));
+    });
+
     test('whereNotNull', () {
       expect(['A', null, 'C', null, 'D', 'E'].whereNotNull().join(),
           equals('ACDE'));
+    });
+
+    test('whereNot', () {
+      expect(
+          ['A', null, 'C', null, 'D', 'E', 5, 10]
+              .whereNot(Predicates.isInstance<String>())
+              .count(),
+          equals(4));
     });
 
     test('count', () {

@@ -16,8 +16,48 @@ extension Iterables<E> on Iterable<E> {
     return WhereIndexedIterable<E>(this, test);
   }
 
+  /// Appends all elements that are instances of specified type parameter [R] to a new mutable list.
+  List<R> whereTypeToMutableList<R>() {
+    final destination = <R>[];
+    for (final element in this) {
+      if (element is R) {
+        destination.add(element);
+      }
+    }
+    return destination;
+  }
+
+  /// Appends all elements matching the given [predicate] to a new mutable list.
+  List<E> whereToMutableList(bool Function(E) predicate) {
+    final destination = <E>[];
+
+    for (final element in this) {
+      if (predicate(element)) {
+        destination.add(element);
+      }
+    }
+
+    return destination;
+  }
+
   /// Returns a new lazy [Iterable] containing all elements that are not `null`.
   Iterable<E> whereNotNull() => where(Predicates.notNull());
+
+  /// Appends all elements that are not `null` to a new mutable list.
+  List<E> whereNotNullToMutableList() {
+    final destination = <E>[];
+    for (final element in this) {
+      if (element != null) {
+        destination.add(element);
+      }
+    }
+
+    return destination;
+  }
+
+  /// Returns a new lazy [Iterable] containing all elements not matching the given [predicate]
+  Iterable<E> whereNot(bool Function(E) predicate) =>
+      where(Predicates.not(predicate));
 
   /// Returns the number of elements in this [Iterable].
   int count() {
