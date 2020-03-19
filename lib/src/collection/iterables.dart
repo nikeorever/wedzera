@@ -8,6 +8,19 @@ extension GeneralIterable<E> on Iterable<E> {
   /// Returns this Collection if it's not `null` and the empty iterable otherwise.
   Iterable<E> orEmpty() => this ?? const Iterable.empty();
 
+  /// Returns an element at the given [index] or the result of calling the [defaultValue] function
+  /// if the [index] is out of bounds of this [Iterable].
+  E elementAtOrElse(int index, E Function(int index) defaultValue) {
+    if (index < 0) return defaultValue(index);
+    final iterator = this.iterator;
+    var count = 0;
+    while (iterator.moveNext()) {
+      final element = iterator.current;
+      if (index == count++) return element;
+    }
+    return defaultValue(index);
+  }
+
   /// Returns a new lazy [Iterable] with all elements that satisfy the
   /// predicate [test].
   /// [test] function that takes the index of an element and the element itself

@@ -19,6 +19,14 @@ void main() {
       expect(nullList.orEmpty(), isNotNull);
     });
 
+    test('elementAtOrElse Test', () {
+      expect([3, 2, 5, 9].elementAtOrElse(3, (index) => 10), equals(9));
+    });
+
+    test('elementAtOrElse else case Test', () {
+      expect([3, 2, 5, 9].elementAtOrElse(7, (index) => 10), equals(10));
+    });
+
     test('none', () {
       expect([].none(), isTrue);
     });
