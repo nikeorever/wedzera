@@ -71,7 +71,12 @@ void main() {
           equals(2));
     });
 
-    test('withIndex', (){
+    test('mapIndexed', () {
+      expect([1, 2, 3, 4].mapIndexed((index, ele) => index + ele).sum(),
+          equals((0 + 1) + (1 + 2) + (2 + 3) + (3 + 4)));
+    });
+
+    test('withIndex', () {
       expect(['A', 'B', 'C'].withIndex().first.index, equals(0));
     });
 
@@ -160,8 +165,13 @@ void main() {
       expect([9.0, 3.0, 2.6].max(), equals(9.0));
     });
 
-    test('partition', (){
-      expect(['A', 2, 'C', 4].partition(Predicates.isInstance<String>()).first.join(), equals('AC'));
+    test('partition', () {
+      expect(
+          ['A', 2, 'C', 4]
+              .partition(Predicates.isInstance<String>())
+              .first
+              .join(),
+          equals('AC'));
     });
   });
 

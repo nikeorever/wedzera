@@ -95,9 +95,18 @@ extension GeneralIterable<E> on Iterable<E> {
     return single;
   }
 
+  /// Returns a [Iterable] containing the results of applying the given [transform] function
+  /// to each element and its index in the original [Iterable].
+  /// [transform] function that takes the index of an element and the element itself
+  /// and returns the result of the transform applied to the element.
+  Iterable<R> mapIndexed<R>(R Function(int index, E) transform) {
+    return withIndex().map<R>(
+        (indexedValue) => transform(indexedValue.index, indexedValue.value));
+  }
+
   /// Returns a [Iterable] that wraps each element of the original [Iterable]
   /// into an [IndexedValue] containing the index of that element and the element itself.
-  Iterable<IndexedValue<E>> withIndex() => enumerate(this);
+  Iterable<IndexedValue<E>> withIndex() => enumerate<E>(this);
 
   /// Returns a new lazy [Iterable] with all elements that satisfy the
   /// predicate [test].
