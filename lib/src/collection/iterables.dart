@@ -16,8 +16,28 @@ extension Iterables<E> on Iterable<E> {
     return WhereIndexedIterable<E>(this, test);
   }
 
-  /// Returns a new lazy [Iterable] containing all elements that are not `null`.k
-  Iterable<E> whereNotNull()=> where(Predicates.notNull());
+  /// Returns a new lazy [Iterable] containing all elements that are not `null`.
+  Iterable<E> whereNotNull() => where(Predicates.notNull());
+
+  /// Returns the number of elements in this [Iterable].
+  int count() {
+    var count = 0;
+    for (final _ in this) {
+      ++count;
+    }
+    return count;
+  }
+
+  /// Returns the number of elements matching the given [predicate].
+  int countWhere(bool Function(E) predicate) {
+    var count = 0;
+    for (final element in this) {
+      if (predicate(element)) {
+        ++count;
+      }
+    }
+    return count;
+  }
 
   /// Returns `true` if all elements match the given [predicate].
   bool all(bool Function(E) predicate) {

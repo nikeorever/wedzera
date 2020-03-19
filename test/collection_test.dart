@@ -32,6 +32,19 @@ void main() {
       expect(['A', null, 'C', null, 'D', 'E'].whereNotNull().join(),
           equals('ACDE'));
     });
+
+    test('count', () {
+      expect(
+          ['A', null, 'C', null, 'D', 'E'].whereNotNull().count(), equals(4));
+    });
+
+    test('countWhere', () {
+      expect(
+          ['A', null, 'C', null, 'D', 'E', 5, 10]
+              .whereNotNull()
+              .countWhere(Predicates.isInstance<int>()),
+          equals(2));
+    });
   });
 
   group('maps Tests', () {
