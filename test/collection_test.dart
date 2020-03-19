@@ -19,6 +19,10 @@ void main() {
       expect(nullList.orEmpty(), isNotNull);
     });
 
+    test('none', () {
+      expect([].none(), isTrue);
+    });
+
     test('whereIndexed Test', () {
       expect(
           ['A', 'B', 'C3', 'D', 'CE', 'F', 'G']
@@ -90,6 +94,14 @@ void main() {
       // 1, 3, 6, 10, 15
       expect([1, 2, 3, 4, 5].scanReduce((acc, ele) => acc + ele).sum(),
           equals(35));
+    });
+
+    test('min value in double iterable', () {
+      expect([9.0, 3.0, 2.6].min(), equals(2.6));
+    });
+
+    test('max value in double iterable', () {
+      expect([9.0, 3.0, 2.6].max(), equals(9.0));
     });
   });
 

@@ -115,13 +115,25 @@ extension GeneralIterable<E> on Iterable<E> {
     return this;
   }
 
+  /// Returns `true` if the [Iterable] has no elements.
+  bool none() => !iterator.moveNext();
+
   /// Returns `true` if no elements match the given [predicate].
-  bool none(bool Function(E) predicate) {
+  bool noneWhere(bool Function(E) predicate) {
     if (isNullOrEmpty) return true;
     for (final ele in this) {
       if (predicate(ele)) return false;
     }
     return true;
+  }
+
+  /// Returns a [Iterable] which performs the given [action] on each
+  /// element of the original [Iterable] as they pass through it.
+  Iterable<E> onEach(void Function(E) action) {
+    return map((e) {
+      action(e);
+      return e;
+    });
   }
 
   /// Returns an unmodifiable [Map] containing the elements from the given collection indexed by the key
@@ -302,5 +314,37 @@ extension DoubleIterable on Iterable<double> {
       ++count;
     }
     return count == 0 ? double.nan : sum / count;
+  }
+
+  /// Returns the largest element or `null` if there are no elements.
+  ///
+  /// If any of elements is `NaN` returns `NaN`.
+  double max() {
+    final iterator = this.iterator;
+    if (!iterator.moveNext()) return null;
+    var max = iterator.current;
+    if (max.isNaN) return max;
+    while (iterator.moveNext()) {
+      final e = iterator.current;
+      if (e.isNaN) return e;
+      if (max < e) max = e;
+    }
+    return max;
+  }
+
+  /// Returns the smallest element or `null` if there are no elements.
+  ///
+  /// If any of elements is `NaN` returns `NaN`.
+  double min() {
+    final iterator = this.iterator;
+    if (!iterator.moveNext()) return null;
+    var min = iterator.current;
+    if (min.isNaN) return min;
+    while (iterator.moveNext()) {
+      final e = iterator.current;
+      if (e.isNaN) return e;
+      if (min > e) min = e;
+    }
+    return min;
   }
 }
