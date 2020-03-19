@@ -70,6 +70,31 @@ extension GeneralIterable<E> on Iterable<E> {
     return last;
   }
 
+  /// Returns single element, or `null` if the [Iterable] is empty or has more than one element.
+  E singleOrNull() {
+    final iterator = this.iterator;
+    if (!iterator.moveNext()) return null;
+    final single = iterator.current;
+    if (iterator.moveNext()) return null;
+    return single;
+  }
+
+  /// Returns the single element matching the given [predicate],
+  /// or `null` if element was not found or more than one element was found.
+  E singleOrNullWhere(bool Function(E) predicate) {
+    E single;
+    bool found = false;
+    for (final element in this) {
+      if (predicate(element)) {
+        if (found) return null;
+        single = element;
+        found = true;
+      }
+    }
+    if (!found) return null;
+    return single;
+  }
+
   /// Returns a new lazy [Iterable] with all elements that satisfy the
   /// predicate [test].
   /// [test] function that takes the index of an element and the element itself

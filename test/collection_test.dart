@@ -52,6 +52,25 @@ void main() {
           equals('D'));
     });
 
+    test('singleOrNull', (){
+      expect([1].singleOrNull(), equals(1));
+    });
+    test('singleOrNull null case', (){
+      expect([1, 2].singleOrNull(), isNull);
+    });
+    test('singleOrNullWhere null case', () {
+      expect(
+          ['A', 'B', 2, 'C', 'D', 8]
+              .singleOrNullWhere(Predicates.isInstance<String>()),
+          isNull);
+    });
+    test('singleOrNullWhere case', () {
+      expect(
+          ['A', 'B', 2, 'C', 'D']
+              .singleOrNullWhere(Predicates.isInstance<int>()),
+          equals(2));
+    });
+
     test('none', () {
       expect([].none(), isTrue);
     });
