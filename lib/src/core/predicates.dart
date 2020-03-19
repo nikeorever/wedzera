@@ -3,6 +3,7 @@ part of wedzera.core;
 typedef Predicate<T> = bool Function(T);
 
 class Predicates {
+  Predicates._();
   static Predicate<T> alwaysTrue<T>() {
     return (t) => true;
   }
@@ -71,6 +72,14 @@ class Predicates {
   static Predicate<T> inCollection<T>(Iterable<T> target) {
     checkNotNull(target);
     return (t) => runCatching(() => target.contains(t)).getOrDefault(false);
+  }
+
+  /// Returns the composition of a [transformation] and a [predicate].
+  static Predicate<A> compose<A, B>(
+      Predicate<B> predicate, Transformation<A, B> transformation) {
+    checkNotNull(predicate);
+    checkNotNull(transformation);
+    return (a) => predicate(transformation(a));
   }
 
   static List<T> _defensiveCopy<T>(Iterable<T> iterable) {

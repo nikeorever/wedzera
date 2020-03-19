@@ -55,5 +55,16 @@ void main() {
       expect([1, 2, 3, 4, null].where(Predicates.isInstance<int>()).length,
           equals(4));
     });
+
+    test('compose', () {
+      expect(
+          [1, 2, 3, 4]
+              .where(Predicates.compose(
+                  Predicates.equalTo('Dart'),
+                  Transformations.forMap(
+                      {1: 'Flutter', 2: 'Dart', 3: 'Android', 4: 'Kotlin'})))
+              .first,
+          equals(2));
+    });
   });
 }
