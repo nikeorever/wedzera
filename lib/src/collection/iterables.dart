@@ -8,6 +8,14 @@ extension Iterables<E> on Iterable<E> {
   /// Returns this Collection if it's not `null` and the empty iterable otherwise.
   Iterable<E> orEmpty() => this ?? const Iterable.empty();
 
+  /// Returns a new lazy [Iterable] with all elements that satisfy the
+  /// predicate [test].
+  /// [test] function that takes the index of an element and the element itself
+  /// and returns the result of predicate evaluation on the element.
+  Iterable<E> whereIndexed(bool Function(int index, E) test) {
+    return WhereIndexedIterable<E>(this, test);
+  }
+
   /// Returns `true` if all elements match the given [predicate].
   bool all(bool Function(E) predicate) {
     if (isNullOrEmpty) return true;

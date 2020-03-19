@@ -18,6 +18,15 @@ void main() {
       List<int> nullList;
       expect(nullList.orEmpty(), isNotNull);
     });
+
+    test('whereIndexed Test', () {
+      expect(
+          ['A', 'B', 'C3', 'D', 'CE', 'F', 'G']
+              .whereIndexed((index, ele) => index % 2 == 0)
+              .where((t) => t.startsWith('C'))
+              .join(),
+          equals('C3CE'));
+    });
   });
 
   group('maps Tests', () {
