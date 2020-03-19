@@ -5,7 +5,6 @@ import 'package:wedzera/core.dart';
 import 'package:wedzera/src/collection/internal/iterables.dart';
 
 part 'src/collection/iterables.dart';
-
 part 'src/collection/maps.dart';
 
 /// Creates a new unmodifiable list with the specified [size], where each element is calculated by calling the specified

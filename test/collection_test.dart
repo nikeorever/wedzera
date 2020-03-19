@@ -32,7 +32,7 @@ void main() {
       expect(
           ['A', 'B', 'C3', 'D', 10, 'F', 10]
               .whereTypeToMutableList<int>()
-              .sumBy((t) => t),
+              .sum(),
           equals(20));
     });
 
@@ -45,8 +45,8 @@ void main() {
     });
 
     test('whereNotNullToMutableList Test', () {
-      expect([10, null, 10, null].whereNotNullToMutableList().sumBy((t) => t),
-          equals(20));
+      expect([10, null, 10, null].whereNotNullToMutableList().average(),
+          equals(10));
     });
 
     test('whereNot Test', () {
@@ -78,6 +78,18 @@ void main() {
               .whereNotNull()
               .countWhere(Predicates.isInstance<int>()),
           equals(2));
+    });
+
+    test('scan', () {
+      // 10, 11, 13, 16, 20, 25
+      expect([1, 2, 3, 4, 5].scan<int>(10, (acc, ele) => acc + ele).sum(),
+          equals(95));
+    });
+
+    test('scanReduce', () {
+      // 1, 3, 6, 10, 15
+      expect([1, 2, 3, 4, 5].scanReduce((acc, ele) => acc + ele).sum(),
+          equals(35));
     });
   });
 
