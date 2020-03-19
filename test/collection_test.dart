@@ -159,6 +159,10 @@ void main() {
     test('max value in double iterable', () {
       expect([9.0, 3.0, 2.6].max(), equals(9.0));
     });
+
+    test('partition', (){
+      expect(['A', 2, 'C', 4].partition(Predicates.isInstance<String>()).first.join(), equals('AC'));
+    });
   });
 
   group('maps Tests', () {

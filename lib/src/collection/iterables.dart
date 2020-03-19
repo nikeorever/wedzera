@@ -362,6 +362,22 @@ extension GeneralIterable<E> on Iterable<E> {
       }
     }
   }
+
+  /// Splits the original [Iterable] into pair of lists,
+  /// where *first* list contains elements for which [predicate] yielded `true`,
+  /// while *second* list contains elements for which [predicate] yielded `false`.
+  Pair<List<E>, List<E>> partition(bool Function(E) predicate) {
+    final first = <E>[];
+    final second = <E>[];
+    for (final element in this) {
+      if (predicate(element)) {
+        first.add(element);
+      } else {
+        second.add(element);
+      }
+    }
+    return Pair(first, second);
+  }
 }
 
 extension IntIterable on Iterable<int> {
