@@ -52,10 +52,10 @@ void main() {
           equals('D'));
     });
 
-    test('singleOrNull', (){
+    test('singleOrNull', () {
       expect([1].singleOrNull(), equals(1));
     });
-    test('singleOrNull null case', (){
+    test('singleOrNull null case', () {
       expect([1, 2].singleOrNull(), isNull);
     });
     test('singleOrNullWhere null case', () {
