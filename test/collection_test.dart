@@ -27,6 +27,11 @@ void main() {
               .join(),
           equals('C3CE'));
     });
+
+    test('whereNotNull', () {
+      expect(['A', null, 'C', null, 'D', 'E'].whereNotNull().join(),
+          equals('ACDE'));
+    });
   });
 
   group('maps Tests', () {

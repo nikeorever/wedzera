@@ -16,6 +16,9 @@ extension Iterables<E> on Iterable<E> {
     return WhereIndexedIterable<E>(this, test);
   }
 
+  /// Returns a new lazy [Iterable] containing all elements that are not `null`.k
+  Iterable<E> whereNotNull()=> where(Predicates.notNull());
+
   /// Returns `true` if all elements match the given [predicate].
   bool all(bool Function(E) predicate) {
     if (isNullOrEmpty) return true;
