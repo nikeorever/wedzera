@@ -95,6 +95,10 @@ extension GeneralIterable<E> on Iterable<E> {
     return single;
   }
 
+  /// Returns a [Iterable] that wraps each element of the original [Iterable]
+  /// into an [IndexedValue] containing the index of that element and the element itself.
+  Iterable<IndexedValue<E>> withIndex() => enumerate(this);
+
   /// Returns a new lazy [Iterable] with all elements that satisfy the
   /// predicate [test].
   /// [test] function that takes the index of an element and the element itself

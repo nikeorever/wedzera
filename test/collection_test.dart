@@ -71,6 +71,10 @@ void main() {
           equals(2));
     });
 
+    test('withIndex', (){
+      expect(['A', 'B', 'C'].withIndex().first.index, equals(0));
+    });
+
     test('none', () {
       expect([].none(), isTrue);
     });
