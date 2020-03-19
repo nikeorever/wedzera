@@ -33,6 +33,21 @@ extension GeneralIterable<E> on Iterable<E> {
     return null;
   }
 
+  /// Returns the first element, or `null` if the [Iterable] is empty
+  E firstOrNull() {
+    final iterator = this.iterator;
+    if (!iterator.moveNext()) return null;
+    return iterator.current;
+  }
+
+  /// Returns the first element matching the given [predicate] , or `null` if element was not found
+  E firstOrNullWhere(bool Function(E) predicate) {
+    for (final element in this) {
+      if (predicate(element)) return element;
+    }
+    return null;
+  }
+
   /// Returns a new lazy [Iterable] with all elements that satisfy the
   /// predicate [test].
   /// [test] function that takes the index of an element and the element itself

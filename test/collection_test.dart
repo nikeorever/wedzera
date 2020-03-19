@@ -35,6 +35,13 @@ void main() {
       expect([3, 2, 5, 9].elementAtOrNull(7), isNull);
     });
 
+    test('firstOrNull null Test', () {
+      expect([].firstOrNull(), isNull);
+    });
+    test('firstOrNull Test', () {
+      expect([1, 2].firstOrNull(), equals(1));
+    });
+
     test('none', () {
       expect([].none(), isTrue);
     });
