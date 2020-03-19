@@ -42,6 +42,16 @@ void main() {
       expect([1, 2].firstOrNull(), equals(1));
     });
 
+    test('lastOrNull', () {
+      expect(['A', 'B', 2, 'C', 4, 'D', 8].lastOrNull(), equals(8));
+    });
+    test('lastOrNullWhere', () {
+      expect(
+          ['A', 'B', 2, 'C', 4, 'D', 8]
+              .lastOrNullWhere(Predicates.isInstance<String>()),
+          equals('D'));
+    });
+
     test('none', () {
       expect([].none(), isTrue);
     });

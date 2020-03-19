@@ -48,6 +48,28 @@ extension GeneralIterable<E> on Iterable<E> {
     return null;
   }
 
+  /// Returns the last element, or `null` if the [Iterable] is empty.
+  E lastOrNull() {
+    final iterator = this.iterator;
+    if (!iterator.moveNext()) return null;
+    var last = iterator.current;
+    while (iterator.moveNext()) {
+      last = iterator.current;
+    }
+    return last;
+  }
+
+  /// Returns the last element matching the given [predicate], or `null` if no such element was found.
+  E lastOrNullWhere(bool Function(E) predicate) {
+    E last;
+    for (final element in this) {
+      if (predicate(element)) {
+        last = element;
+      }
+    }
+    return last;
+  }
+
   /// Returns a new lazy [Iterable] with all elements that satisfy the
   /// predicate [test].
   /// [test] function that takes the index of an element and the element itself
