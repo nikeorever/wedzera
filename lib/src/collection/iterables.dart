@@ -21,6 +21,18 @@ extension GeneralIterable<E> on Iterable<E> {
     return defaultValue(index);
   }
 
+  /// Returns an element at the given [index] or `null` if the [index] is out of bounds of this [Iterable].
+  E elementAtOrNull(int index) {
+    if (index < 0) return null;
+    final iterator = this.iterator;
+    var count = 0;
+    while (iterator.moveNext()) {
+      final element = iterator.current;
+      if (index == count++) return element;
+    }
+    return null;
+  }
+
   /// Returns a new lazy [Iterable] with all elements that satisfy the
   /// predicate [test].
   /// [test] function that takes the index of an element and the element itself

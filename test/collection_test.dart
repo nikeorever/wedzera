@@ -27,6 +27,14 @@ void main() {
       expect([3, 2, 5, 9].elementAtOrElse(7, (index) => 10), equals(10));
     });
 
+    test('elementAtOrNull', () {
+      expect([3, 2, 5, 9].elementAtOrNull(2), equals(5));
+    });
+
+    test('elementAtOrNull else case Test', () {
+      expect([3, 2, 5, 9].elementAtOrNull(7), isNull);
+    });
+
     test('none', () {
       expect([].none(), isTrue);
     });
