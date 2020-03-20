@@ -10,7 +10,7 @@ abstract class AbstractIterator<T> extends Iterator<T> {
 
   @override
   T get current {
-    if (!moveNext()) throw Exception();
+    if (!moveNext()) throw StateError('no such element');
     _state = _State.NotReady;
     return _nextValue;
   }
