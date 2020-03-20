@@ -147,6 +147,19 @@ extension GeneralIterable<E> on Iterable<E> {
     }
   }
 
+  /// Accumulates value starting with [initial] value and applying [operation] from left to right
+  /// to current accumulator value and each element with its index in the original [Iterable].
+  /// [operation] function that takes the index of an element, current accumulator value
+  /// and the element itself, and calculates the next accumulator value.
+  R foldIndexed<R>(R inital, R Function(int index, R acc, E) operation) {
+    var index = 0;
+    var accumulator = inital;
+    for (final element in this) {
+      accumulator = operation(index++, accumulator, element);
+    }
+    return accumulator;
+  }
+
   /// Returns the number of elements in this [Iterable].
   int count() {
     var count = 0;

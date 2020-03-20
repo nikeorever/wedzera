@@ -92,6 +92,18 @@ void main() {
           equals((1 * 1) + (3 * 3)));
     });
 
+    test('foldIndexed', () {
+      expect(
+          [1, 2, 3].foldIndexed(10, (index, acc, ele) {
+            if (index % 2 == 0) {
+              return acc + ele;
+            } else {
+              return acc * ele;
+            }
+          }),
+          equals(25));
+    });
+
     test('withIndex', () {
       expect(['A', 'B', 'C'].withIndex().first.index, equals(0));
     });
