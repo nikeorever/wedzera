@@ -1,3 +1,7 @@
+import 'dart:collection';
+
+import 'package:wedzera/src/collection/internal/abstract_iterator.dart';
+
 typedef _IndexedElementPredicate<E> = bool Function(int index, E);
 
 class WhereIndexedIterable<E> extends Iterable<E> {
@@ -29,4 +33,36 @@ class WhereIndexedIterator<E> extends Iterator<E> {
 
   @override
   E get current => _iterator.current;
+}
+
+class DistinctIterable<T, K> extends Iterable<T> {
+  DistinctIterable(this._source, this._keySelector);
+
+  final Iterable<T> _source;
+  final K Function(T) _keySelector;
+
+  @override
+  Iterator<T> get iterator => DistinctIterator(_source.iterator, _keySelector);
+}
+
+class DistinctIterator<T, K> extends AbstractIterator<T> {
+  DistinctIterator(this._source, this._keySelector);
+
+  final Iterator<T> _source;
+  final K Function(T) _keySelector;
+  final Set<K> _observed = HashSet<K>();
+
+  @override
+  void computeNext() {
+    while (_source.moveNext()) {
+      final next = _source.current;
+      final key = _keySelector(next);
+
+      if (_observed.add(key)) {
+        setNext(next);
+        return;
+      }
+    }
+    done();
+  }
 }

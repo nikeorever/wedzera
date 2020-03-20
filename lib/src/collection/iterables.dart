@@ -224,6 +224,20 @@ extension GeneralIterable<E> on Iterable<E> {
     });
   }
 
+  /// Returns a [Iterable] containing only distinct elements from the given [Iterable].
+  ///
+  /// The elements in the resulting [Iterable] are in the same order as they were in the source [Iterable].
+  Iterable<E> distinct() => distinctBy<E>(Transformations.identity());
+
+  /// Returns a [Iterable] containing only elements from the given [Iterable]
+  /// having distinct keys returned by the given [selector] function.
+  ///
+  /// The elements in the resulting [Iterable] are in the same order as they were in the source [Iterable].
+  /// @sample samples.collections.Collections.Transformations.distinctAndDistinctBy
+  Iterable<E> distinctBy<K>(K Function(E) selector) {
+    return DistinctIterable<E, K>(this, selector);
+  }
+
   /// Returns an unmodifiable [Map] containing the elements from the given collection indexed by the key
   /// returned from [keySelector] function applied to each element.
   ///

@@ -100,6 +100,21 @@ void main() {
       expect([].none(), isTrue);
     });
 
+    test('distinct', () {
+      expect([1, 2, 3, 4].distinct().sum(), equals(10));
+    });
+    test('distinctBy', () {
+      expect(
+          [1, 2, 3, 4].distinctBy((ele) {
+            if (ele % 2 == 0) {
+              return 'even';
+            } else {
+              return 'odd';
+            }
+          }).sum(),
+          equals(3));
+    });
+
     test('whereIndexed Test', () {
       expect(
           ['A', 'B', 'C3', 'D', 'CE', 'F', 'G']
