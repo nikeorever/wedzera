@@ -76,6 +76,14 @@ void main() {
           equals((0 + 1) + (1 + 2) + (2 + 3) + (3 + 4)));
     });
 
+    test('mapIndexedNotNull', () {
+      expect(
+          [1, 2, 3, 4].mapIndexedNotNull((index, ele) {
+            return index % 2 == 0 ? null : index + ele;
+          }).sum(),
+          equals((1 + 2) + (3 + 4)));
+    });
+
     test('withIndex', () {
       expect(['A', 'B', 'C'].withIndex().first.index, equals(0));
     });
