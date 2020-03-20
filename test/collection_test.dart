@@ -109,27 +109,6 @@ void main() {
           equals('C3CE'));
     });
 
-    test('whereTypeToMutableList Test', () {
-      expect(
-          ['A', 'B', 'C3', 'D', 10, 'F', 10]
-              .whereTypeToMutableList<int>()
-              .sum(),
-          equals(20));
-    });
-
-    test('whereToMutableList Test', () {
-      expect(
-          ['A', 'B', 'C3', 'D', 10, 'F', 10]
-              .whereToMutableList(Predicates.isInstance<int>())
-              .sumBy((t) => t),
-          equals(20));
-    });
-
-    test('whereNotNullToMutableList Test', () {
-      expect([10, null, 10, null].whereNotNullToMutableList().average(),
-          equals(10));
-    });
-
     test('whereNot Test', () {
       expect([10, null, 10, null].whereNot(Predicates.isNull()).sumBy((t) => t),
           equals(20));
