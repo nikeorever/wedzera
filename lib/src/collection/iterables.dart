@@ -112,6 +112,12 @@ extension GeneralIterable<E> on Iterable<E> {
     return mapIndexed<R>(transform).whereNotNull();
   }
 
+  /// Returns a [Iterable] containing only the non-null results of applying the given [transfrom] function
+  /// to each element in the original [Iterable].
+  Iterable<R> mapNotNull<R>(R Function(E) transform) {
+    return map<R>(transform).whereNotNull();
+  }
+
   /// Returns a [Iterable] that wraps each element of the original [Iterable]
   /// into an [IndexedValue] containing the index of that element and the element itself.
   Iterable<IndexedValue<E>> withIndex() => enumerate<E>(this);
