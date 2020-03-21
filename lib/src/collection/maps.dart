@@ -81,6 +81,21 @@ extension Maps<K, V> on Map<K, V> {
     forEach((key, value) => action(MapEntry(key, value)));
     return this;
   }
+
+  /// Populates the given [destination] map with entries having the keys of this map and the values obtained
+  /// by applying the [transform] function to each entry in this [Map].
+  M mapValuesTo<R, M extends Map<K, R>>(
+          M destination, R Function(MapEntry<K, V>) transform) =>
+      entries.associateByTo(destination, (entry) => entry.key, transform);
+
+  /// Populates the given [destination] map with entries having the keys obtained
+  /// by applying the [transform] function to each entry in this [Map] and the values of this map.
+  ///
+  /// In case if any two entries are mapped to the equal keys, the value of the latter one will overwrite
+  /// the value associated with the former one.
+  M mapKeysTo<R, M extends Map<R, V>>(
+          M destination, R Function(MapEntry<K, V>) transform) =>
+      entries.associateByTo(destination, transform, (entry) => entry.value);
 }
 
 /// Converts [MapEntry] to [Pair] with key being first component and value being second.

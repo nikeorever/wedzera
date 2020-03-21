@@ -251,28 +251,12 @@ extension GeneralIterable<E> on Iterable<E> {
     return DistinctIterable<E, K>(this, selector);
   }
 
-  /// Returns an unmodifiable [Map] containing the elements from the given collection indexed by the key
-  /// returned from [keySelector] function applied to each element.
-  ///
-  /// If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
-  ///
-  /// The returned map preserves the entry iteration order of the original collection.
-  Map<K, E> associateBy<K>(K Function(E) keySelector) {
-    // LinkedHashMap
-    final destination = Map.identity();
-    for (final ele in this) {
-      destination[keySelector(ele)] = ele;
-    }
-    return Map.unmodifiable(destination);
-  }
-
   /// Returns an unmodifiable [Map] containing the values provided by [valueTransform] and indexed by [keySelector] functions applied to elements of the given collection.
   ///
   /// If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
   ///
   /// The returned map preserves the entry iteration order of the original collection.
-  // https://github.com/dart-lang/sdk/issues/26488
-  Map<K, V> associateBy2<K, V>(
+  Map<K, V> associateBy<K, V>(
       K Function(E) keySelector, V Function(E) valueTransform) {
     // LinkedHashMap
     final destination = Map.identity();
@@ -280,6 +264,19 @@ extension GeneralIterable<E> on Iterable<E> {
       destination[keySelector(ele)] = valueTransform(ele);
     }
     return Map.unmodifiable(destination);
+  }
+
+  /// Populates and returns the [destination] mutable map with key-value pairs,
+  /// where key is provided by the [keySelector] function and
+  /// and value is provided by the [valueTransform] function applied to elements of the given collection.
+  ///
+  /// If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
+  M associateByTo<K, V, M extends Map<K, V>>(
+      M destination, K Function(E) keySelector, V Function(E) valueTransform) {
+    for (final element in this) {
+      destination[keySelector(element)] = valueTransform(element);
+    }
+    return destination;
   }
 
   /// Returns an unmodifiable [Map] containing key-value pairs provided by [transform] function

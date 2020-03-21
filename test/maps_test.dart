@@ -54,5 +54,19 @@ void main() {
               .noneWhere((entry) => entry.key % 2 == 0),
           isTrue);
     });
+
+    test('mapKeysTo', () {
+      expect(
+          {1: 'A', 3: 'B', 5: 'C'}.mapKeysTo(
+              <String, String>{}, (entry) => (entry.key + 1).toString())['6'],
+          equals('C'));
+    });
+
+    test('mapValuesTo', () {
+      expect(
+          {1: 'A', 3: 'B', 5: 'C'}
+              .mapValuesTo(<int, String>{}, (entry) => entry.value + '_')[1],
+          equals('A_'));
+    });
   });
 }
