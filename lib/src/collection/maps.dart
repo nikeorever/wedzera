@@ -96,6 +96,24 @@ extension Maps<K, V> on Map<K, V> {
   M mapKeysTo<R, M extends Map<R, V>>(
           M destination, R Function(MapEntry<K, V>) transform) =>
       entries.associateByTo(destination, transform, (entry) => entry.value);
+
+  /// Creates a new read-only map by replacing or adding entries to this map from another [map].
+  ///
+  /// The returned map preserves the entry iteration order of the original map.
+  /// Those entries of another [map] that are missing in this map are iterated in the end in the order of that [map].
+  Map<K, V> operator +(Map<K, V> map) =>
+      Map.unmodifiable(LinkedHashMap.from(this)..addAll(map));
+
+  /// Returns a read-only map containing all entries of the original map except those entries
+  /// the keys of which are contained in the given [keys] collection.
+  ///
+  /// The returned map preserves the entry iteration order of the original map.
+  Map<K, V> operator -(Iterable<K> keys) {
+    // optimize in the future
+    final convert = Map.from(this);
+    keys.forEach(convert.remove);
+    return Map.unmodifiable(convert);
+  }
 }
 
 /// Converts [MapEntry] to [Pair] with key being first component and value being second.

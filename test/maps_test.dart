@@ -68,5 +68,29 @@ void main() {
               .mapValuesTo(<int, String>{}, (entry) => entry.value + '_')[1],
           equals('A_'));
     });
+
+    test('plus operator', () {
+      expect(({1: 'A', 3: 'B', 5: 'C'} + {7: 'D'})[7], equals('D'));
+    });
+
+    test('plus operator', () {
+      expect((<int, String>{} + {7: 'D'})[7], equals('D'));
+    });
+
+    test('plus operator', () {
+      expect(({1: 'A', 3: 'B', 5: 'C'} + {5: 'D'})[5], equals('D'));
+    });
+
+    test('minus operator', () {
+      expect(({1: 'A', 3: 'B', 5: 'C'} - {5})[5], isNull);
+    });
+
+    test('minus operator', () {
+      expect(({1: 'A', 3: 'B', 5: 'C'} - {1, 3, 5}).isEmpty, isTrue);
+    });
+
+    test('minus operator', () {
+      expect(({1: 'A', 3: 'B', 5: 'C'} - {6})[5], equals('C'));
+    });
   });
 }
