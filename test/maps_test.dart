@@ -12,25 +12,47 @@ void main() {
       expect(valueMap.isNullOrEmpty, isFalse);
     });
 
-    test('mapToList() Test', () {
-      expect(valueMap.mapToList((k, v) => k + v).length, equals(1));
-    });
-    test('mapToList() growable Test', () {
-      expect(() {
-        valueMap.mapToList((k, v) => k + v).add('newValue');
-      }, throwsUnsupportedError);
-    });
-
     test('getOrElse() with exist key Test', () {
-      expect(valueMap.getOrElse('Key', ()=> 'NewValue'), equals('Value'));
+      expect(valueMap.getOrElse('Key', () => 'NewValue'), equals('Value'));
     });
 
     test('getOrElse() without exist key Test', () {
-      expect(valueMap.getOrElse('Key1', ()=> 'NewValue'), equals('NewValue'));
+      expect(valueMap.getOrElse('Key1', () => 'NewValue'), equals('NewValue'));
     });
 
     test('mapEntryToPair() Test', () {
-      expect(mapEntryToPair(const MapEntry('Key', 'Value')).first, equals('Key'));
+      expect(
+          mapEntryToPair(const MapEntry('Key', 'Value')).first, equals('Key'));
+    });
+
+    test('all', () {
+      expect({2: 'A', 4: 'B'}.all((entry) => entry.key % 2 == 0), isTrue);
+    });
+
+    test('all', () {
+      expect({2: 'A', 4: 'B'}.any(), isTrue);
+    });
+    test('all with emtpy entries', () {
+      expect({}.any(), isFalse);
+    });
+    test('allWhere', () {
+      expect({1: 'A', 3: 'B'}.anyWhere((entry) => entry.key % 2 == 0), isFalse);
+    });
+    test('countWhere', () {
+      expect({1: 'A', 2: 'B', 3: 'C'}.countWhere((entry) => entry.key % 2 == 0),
+          equals(1));
+    });
+
+    test('noneWhere', () {
+      expect({1: 'A', 3: 'B', 5: 'C'}.noneWhere((entry) => entry.key % 2 == 0),
+          isTrue);
+    });
+    test('onEach', () {
+      expect(
+          {1: 'A', 3: 'B', 5: 'C'}
+              .onEach(print)
+              .noneWhere((entry) => entry.key % 2 == 0),
+          isTrue);
     });
   });
 }
