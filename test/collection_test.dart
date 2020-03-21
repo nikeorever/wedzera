@@ -195,6 +195,56 @@ void main() {
               .join(),
           equals('AC'));
     });
+
+    test('Grouping aggregate odd', () {
+      expect(
+          [1, 2, 3, 4].groupingBy((e) {
+            return e % 2;
+          }).aggregate((key, acc, ele, first) {
+            acc = first ? 0 : acc;
+            return acc + ele;
+          })[1],
+          equals(1 + 3));
+    });
+
+    test('Grouping aggregate even', () {
+      expect(
+          [1, 2, 3, 4].groupingBy((e) {
+            return e % 2;
+          }).aggregate((key, acc, ele, first) {
+            acc = first ? 0 : acc;
+            return acc + ele;
+          })[0],
+          equals(2 + 4));
+    });
+
+    test('Grouping fold even', () {
+      expect(
+          [1, 2, 3, 4].groupingBy((e) {
+            return e % 2;
+          }).fold((key, ele) {
+            return 0;
+          }, (key, acc, ele) {
+            return acc + ele;
+          })[0],
+          equals(2 + 4));
+    });
+
+    test('Grouping reduce even', () {
+      expect(
+          [1, 2, 3, 4, 5, 6, 7, 8, 9].groupingBy((e) {
+            return e % 2;
+          }).reduce((key, acc, ele) => acc + ele)[0],
+          equals(2 + 4 + 6 + 8));
+    });
+
+    test('Grouping eachCountTo even', () {
+      expect(
+          [1, 2, 3, 4, 5, 6, 7, 8, 9].groupingBy((e) {
+            return e % 2;
+          }).eachCountTo(<int, int>{})[0],
+          equals(4));
+    });
   });
 
   group('maps Tests', () {

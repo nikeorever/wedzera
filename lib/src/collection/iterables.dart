@@ -402,6 +402,13 @@ extension GeneralIterable<E> on Iterable<E> {
     }
     return Pair(first, second);
   }
+
+  /// Creates a [Grouping] source from a [Iterable] to be used later with one of
+  /// group-and-fold operations using the specified [keySelector] function to extract
+  /// a key from each element.
+  Grouping<E, K> groupingBy<K>(K Function(E) keySelector) {
+    return Grouping.fromIterable(this, keySelector);
+  }
 }
 
 extension IntIterable on Iterable<int> {
