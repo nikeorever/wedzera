@@ -263,18 +263,18 @@ void main() {
   });
 
   group('collection Test', () {
-    test('mapOf with same key Test', () {
-      final map = mapOf([Pair(1, 2), Pair(1, 3), Pair(2, 2)]);
+    test('unmodifiableMapOf with same key Test', () {
+      final map = unmodifiableMapOf([Pair(1, 2), Pair(1, 3), Pair(2, 2)]);
       expect(map[1], equals(3));
     });
 
-    test('mapOf with different key Test', () {
-      final map = mapOf([Pair(1, 2), Pair(2, 3), Pair(3, 2)]);
+    test('unmodifiableMapOf with different key Test', () {
+      final map = unmodifiableMapOf([Pair(1, 2), Pair(2, 3), Pair(3, 2)]);
       expect(map.values.fold(0, (acc, ele) => acc + ele), equals(7));
     });
 
-    test('mapOf with modify Test', () {
-      final map = mapOf([Pair(1, 2), Pair(2, 3), Pair(3, 2)]);
+    test('unmodifiableMapOf with modify Test', () {
+      final map = unmodifiableMapOf([Pair(1, 2), Pair(2, 3), Pair(3, 2)]);
       expect(() {
         map.clear();
       }, throwsUnsupportedError);
@@ -287,8 +287,8 @@ void main() {
       }, returnsNormally);
     });
 
-    test('list Test', () {
-      final li = list(6, (index) => '#$index');
+    test('unmodifiableList Test', () {
+      final li = unmodifiableList(6, (index) => '#$index');
       expect(() {
         li.add('#60');
       }, throwsUnsupportedError);

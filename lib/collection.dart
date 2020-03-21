@@ -2,6 +2,7 @@ library wedzera.collection;
 
 import 'dart:collection';
 
+import 'package:collection/collection.dart';
 import 'package:quiver/check.dart';
 import 'package:quiver/iterables.dart';
 import 'package:wedzera/core.dart';
@@ -16,10 +17,10 @@ part 'src/collection/maps.dart';
 ///
 /// The function [init] is called for each list element sequentially starting from the first one.
 /// It should return the value for a list element given its index.
-List<T> list<T>(int size, T Function(int index) init) {
-  final list = <T>[];
-  repeat(size, (index) => list.add(init(index)));
-  return List.unmodifiable(list);
+List<T> unmodifiableList<T>(int size, T Function(int index) init) {
+  final mutableList = <T>[];
+  repeat(size, (index) => mutableList.add(init(index)));
+  return mutableList.toUnmodifiableList();
 }
 
 /// Creates a new mutable list with the specified [size], where each element is calculated by calling the specified
@@ -28,9 +29,9 @@ List<T> list<T>(int size, T Function(int index) init) {
 /// The function [init] is called for each list element sequentially starting from the first one.
 /// It should return the value for a list element given its index.
 List<T> mutableList<T>(int size, T Function(int index) init) {
-  final list = <T>[];
-  repeat(size, (index) => list.add(init(index)));
-  return list;
+  final mutableList = <T>[];
+  repeat(size, (index) => mutableList.add(init(index)));
+  return mutableList;
 }
 
 /// Returns a new unmodifiable [Map] with the specified contents, given as a list of pairs
@@ -40,9 +41,9 @@ List<T> mutableList<T>(int size, T Function(int index) init) {
 ///
 /// Entries of the map are iterated in the order they were specified.
 ///
-Map<K, V> mapOf<K, V>(Iterable<Pair<K, V>> pairs) {
-  return Map.unmodifiable(
-      Map.fromEntries(pairs.map((pair) => pair.toMapEntry())));
+Map<K, V> unmodifiableMapOf<K, V>(Iterable<Pair<K, V>> pairs) {
+  return Map.fromEntries(pairs.map((pair) => pair.toMapEntry()))
+      .toUnmodifiableMap();
 }
 
 /// Returns a new [Map] with the specified contents, given as a list of pairs

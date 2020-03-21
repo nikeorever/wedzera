@@ -286,7 +286,7 @@ extension GeneralIterable<E> on Iterable<E> {
   ///
   /// The returned map preserves the entry iteration order of the original collection.
   Map<K, V> associate<K, V>(Pair<K, V> Function(E) transform) {
-    return mapOf(map(transform));
+    return unmodifiableMapOf(map(transform));
   }
 
   /// Returns an unmodifiable [Map] where keys are elements from the given collection and values are
@@ -430,6 +430,12 @@ extension GeneralIterable<E> on Iterable<E> {
   Grouping<E, K> groupingBy<K>(K Function(E) keySelector) {
     return Grouping.fromIterable(this, keySelector);
   }
+
+  /// Creates an unmodifiable list containing all [elements].
+  List<E> toUnmodifiableList() => List.unmodifiable(this);
+
+  /// Creates an unmodifiable set containing all [elements].
+  Set<E> toUnmodifiableSet() => UnmodifiableSetView(this);
 }
 
 extension IntIterable on Iterable<int> {

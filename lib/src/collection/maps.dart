@@ -114,8 +114,28 @@ extension Maps<K, V> on Map<K, V> {
     keys.forEach(convert.remove);
     return Map.unmodifiable(convert);
   }
+
+  /// Returns a new mutable map containing all key-value pairs from the original map.
+  ///
+  /// The returned map preserves the entry iteration order of the original map.
+  Map<K, V> toMutableMap() => Map.of(this);
+
+  /// Creates an unmodifiable Map containing all key/value pairs of this map.
+  Map<K, V> toUnmodifiableMap() => UnmodifiableMapView(this);
 }
 
 /// Converts [MapEntry] to [Pair] with key being first component and value being second.
 Pair<K, V> mapEntryToPair<K, V>(MapEntry<K, V> entry) =>
     Pair(entry.key, entry.value);
+
+/// An unmodifiable map.
+///
+/// An UnmodifiableMapView contains a [Map] object and ensures
+/// that it does not change.
+/// Methods that would change the set,
+/// such as [putIfAbsent] and [remove], throw an [UnsupportedError].
+/// Permitted operations defer to the wrapped set.
+class UnmodifiableMapView<K, V> extends DelegatingMap<K, V>
+    with UnmodifiableMapMixin<K, V> {
+  UnmodifiableMapView(Map<K, V> base) : super(base);
+}

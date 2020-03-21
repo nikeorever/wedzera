@@ -92,5 +92,18 @@ void main() {
     test('minus operator', () {
       expect(({1: 'A', 3: 'B', 5: 'C'} - {6})[5], equals('C'));
     });
+
+    test('toUnmodifiableMap', () {
+      final mutableMap = {1: 'A', 3: 'B', 5: 'C'};
+      expect(() {
+        mutableMap.toUnmodifiableMap().clear();
+      }, throwsUnsupportedError);
+    });
+
+    test('toMutableMap', () {
+      final mutableMap = {1: 'A', 3: 'B', 5: 'C'};
+      expect((mutableMap.toUnmodifiableMap().toMutableMap()..[6] = 'D')[6],
+          equals('D'));
+    });
   });
 }
