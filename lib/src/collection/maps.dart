@@ -9,6 +9,19 @@ extension Maps<K, V> on Map<K, V> {
   /// function if there was no entry for the given key.
   V getOrElse(K key, V Function() defaultValue) => this[key] ?? defaultValue();
 
+  /// Returns the value for the given key. If the key is not found in the map, calls the [defaultValue] function,
+  /// puts its result into the map under the given key and returns it.
+  V getOrPut(K key, V Function() defaultValue) {
+    final value = this[key];
+    if (value == null) {
+      final answer = defaultValue();
+      this[key] = answer;
+      return answer;
+    } else {
+      return value;
+    }
+  }
+
   /// Returns `true` if all entries match the given [predicate].
   bool all(bool Function(MapEntry<K, V>) predicate) {
     if (isEmpty) return true;

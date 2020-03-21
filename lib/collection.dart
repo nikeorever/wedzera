@@ -1,5 +1,7 @@
 library wedzera.collection;
 
+import 'dart:collection';
+
 import 'package:quiver/check.dart';
 import 'package:quiver/iterables.dart';
 import 'package:wedzera/core.dart';

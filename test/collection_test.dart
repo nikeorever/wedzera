@@ -196,6 +196,14 @@ void main() {
           equals('AC'));
     });
 
+    test('groupBy', () {
+      expect(
+          [1, 2, 3, 4, 5]
+              .groupBy((e) => e % 2, Transformations.identity())[1]
+              .sum(),
+          equals(1 + 3 + 5));
+    });
+
     test('Grouping aggregate odd', () {
       expect(
           [1, 2, 3, 4].groupingBy((e) {

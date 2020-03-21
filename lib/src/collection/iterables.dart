@@ -403,6 +403,30 @@ extension GeneralIterable<E> on Iterable<E> {
     return Pair(first, second);
   }
 
+  /// Groups values returned by the [valueTransform] function applied to each element of the original [Iterable]
+  /// by the key returned by the given [keySelector] function applied to the element
+  /// and returns a map where each group key is associated with a list of corresponding values.
+  ///
+  /// The returned map preserves the entry iteration order of the keys produced from the original [Iterable].
+  Map<K, List<V>> groupBy<K, V>(
+          K Function(E) keySelector, V Function(E) valueTransform) =>
+      groupByTo(LinkedHashMap.identity(), keySelector, valueTransform);
+
+  /// Groups values returned by the [valueTransform] function applied to each element of the original [Iterable]
+  /// by the key returned by the given [keySelector] function applied to the element
+  /// and puts to the [destination] map each group key associated with a list of corresponding values.
+  ///
+  /// return The [destination] map.
+  M groupByTo<K, V, M extends Map<K, List<V>>>(
+      M destination, K Function(E) keySelector, V Function(E) valueTransform) {
+    for (final element in this) {
+      final key = keySelector(element);
+      final list = destination.getOrPut(key, () => <V>[]);
+      list.add(valueTransform(element));
+    }
+    return destination;
+  }
+
   /// Creates a [Grouping] source from a [Iterable] to be used later with one of
   /// group-and-fold operations using the specified [keySelector] function to extract
   /// a key from each element.
