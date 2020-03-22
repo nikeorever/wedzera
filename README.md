@@ -1,18 +1,11 @@
 # Wedzera
 
-Wedzera is an extension toolkit for Dart, It contains many convenient, functional, and easy-to-use functions.
+Wedzera is an extension toolkit for Dart, It contains many convenient, functional,
+and easy-to-use functions.
 
 ## Libraries
 
 ## [wedzera.collection][]
-
-`list` creates a new unmodifiable `List` with the specified size, where each element is calculated by calling the specified init function.
-
-`mutableList` creates a new mutable `List` with the specified size, where each element is calculated by calling the specified init function.
-
-`mapOf` returns a new unmodifiable `Map` with the specified contents, given as a list of pairs where the first component is the key and the second is the value.
-
-`mutableMapOf` returns a new mutable `Map` with the specified contents, given as a list of pairs where the first component is the key and the second is the value.
 
 `Iterables` is an extension class for `Iterable`.
 
@@ -24,19 +17,19 @@ Wedzera is an extension toolkit for Dart, It contains many convenient, functiona
 
 `Pair` represents a generic pair of two values.
 
-`pairToList` converts this pair into an unmodifiable list.
-
-`toMapEntry` converts `Pair` to `MapEntry`.
-
 `Triple` represents a triad of values.
 
-`tripleToList` converts this triple into an unmodifiable list.
+`Result` a discriminated union that encapsulates a successful outcome with a
+value of type T or a failure with an arbitrary `Exception` exception.
 
-`Result` a discriminated union that encapsulates a successful outcome with a value of type T or a failure with an arbitrary `Exception` exception.
+`ErrorAndStacktrace` an Object which containing both an error and
+the corresponding stack trace.
 
-`repeat` executes the given function action specified number of times.
+`Strings` is an extension class for `String`.
 
-`ErrorAndStacktrace` an Object which containing both an error and the corresponding stack trace.
+`Transformations` contains a lot of practical static method for `R Function(T) transform`.
+
+`Predicates` contains a lot of practical static method for `bool Function(T) predicate`.
 
 [wedzera.core]: https://pub.dev/documentation/wedzera/latest/wedzera.core/wedzera.core-library.html
 

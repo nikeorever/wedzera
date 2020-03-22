@@ -17,3 +17,6 @@ build/
 
 # Temp files
 *~
+
+# Markdown lint files
+.markdownlint.json
