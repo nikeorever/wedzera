@@ -20,7 +20,7 @@ void main() {
       expect(6.takeIf(Predicates.inCollection([5, 6])), equals(6));
     });
 
-    test('test takeIf scope function', () {
+    test('test takeUnless scope function', () {
       expect(6.takeUnless(Predicates.not(Predicates.inCollection([5, 6]))),
           equals(6));
     });
