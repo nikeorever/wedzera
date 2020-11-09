@@ -3,12 +3,11 @@ library wedzera.collection;
 import 'dart:collection';
 
 import 'package:collection/collection.dart';
-import 'package:quiver/check.dart';
-import 'package:quiver/iterables.dart';
 import 'package:wedzera/core.dart';
 import 'package:wedzera/src/collection/internal/iterables.dart';
 
 part 'src/collection/grouping.dart';
+part 'src/collection/IndexedValue.dart';
 part 'src/collection/iterables.dart';
 part 'src/collection/maps.dart';
 

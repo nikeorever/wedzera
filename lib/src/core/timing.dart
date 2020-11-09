@@ -1,4 +1,4 @@
-library wedzera.system;
+part of wedzera.core;
 
 /// Executes the given [block] and returns elapsed time in milliseconds.
 int measureTimeMillis(Function() block) {

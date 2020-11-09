@@ -9,6 +9,13 @@ void main() {
     String blankStr = ' ';
     String notBlankStr = 'Flutter';
 
+    test('isNullOrEmpty() with null string Test', () {
+      expect(nullStr.isNullOrEmpty(), isTrue);
+    });
+    test('isNullOrEmpty() with empty string Test', () {
+      expect(emptyStr.isNullOrEmpty(), isTrue);
+    });
+
     test('orEmpty() with null string Test', () {
       expect(nullStr.orEmpty(), equals(''));
     });
@@ -18,7 +25,9 @@ void main() {
     });
 
     test('ifEmpty() with null string Test', () {
-      expect(nullStr.ifEmpty(() => 'Dart'), equals('Dart'));
+      expect((){
+        nullStr.ifEmpty(() => 'Dart');
+      }, throwsNoSuchMethodError);
     });
 
     test('ifEmpty() with not null string Test', () {

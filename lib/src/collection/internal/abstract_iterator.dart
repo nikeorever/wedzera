@@ -1,4 +1,4 @@
-import 'package:quiver/check.dart';
+import 'package:wedzera/core.dart';
 
 enum _State { Ready, NotReady, Done, Failed }
 
@@ -17,7 +17,7 @@ abstract class AbstractIterator<T> extends Iterator<T> {
 
   @override
   bool moveNext() {
-    checkArgument(_state != _State.Failed);
+    require(_state != _State.Failed);
     switch (_state) {
       case _State.Done:
         return false;

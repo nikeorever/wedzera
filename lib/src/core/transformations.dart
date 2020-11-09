@@ -8,7 +8,7 @@ class Transformations {
   /// The [Transformation] simply invokes [toString] on its argument and returns the result.
   /// It throws an [ArgumentError] on null input.
   static Transformation<Object, String> toStringTransformation() =>
-      (t) => checkNotNull(t).toString();
+      (t) => requireNotNull(t).toString();
 
   /// Returns a [Transformation] that always returns its input argument.
   static Transformation<T, T> identity<T>() => (t) => t;
@@ -16,11 +16,11 @@ class Transformations {
   /// Returns a [Transformation] which performs a map lookup. The returned function throws an [ArgumentError]
   /// if given a key that does not exist in the map. See also [forMapWithDefault], which returns a default value in this case.
   static Transformation<K, V> forMap<K, V>(Map<K, V> map) {
-    checkNotNull(map);
+    requireNotNull(map);
     return (key) {
       final result = map[key];
-      checkArgument(result != null || map.containsKey(key),
-          message: "Key '$key' not present in map");
+      require(result != null || map.containsKey(key),
+          lazyMessage: () => "Key '$key' not present in map");
       return result;
     };
   }
@@ -30,7 +30,7 @@ class Transformations {
   /// See also [forMap], which throws an exception in this case.
   static Transformation<K, V> forMapWithDefault<K, V>(
       Map<K, V> map, V defaultValue) {
-    checkNotNull(map);
+    requireNotNull(map);
     return (key) {
       final result = map[key];
       return (result != null || map.containsKey(key)) ? result : defaultValue;
@@ -39,7 +39,7 @@ class Transformations {
 
   /// Creates a [Transformation] that returns the same [bool] output as the given [predicate] for all inputs.
   static Transformation<T, bool> forPredicate<T>(Predicate<T> predicate) {
-    checkNotNull(predicate);
+    requireNotNull(predicate);
     return (t) => predicate(t);
   }
 

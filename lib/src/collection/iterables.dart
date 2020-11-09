@@ -120,7 +120,7 @@ extension GeneralIterable<E> on Iterable<E> {
 
   /// Returns a [Iterable] that wraps each element of the original [Iterable]
   /// into an [IndexedValue] containing the index of that element and the element itself.
-  Iterable<IndexedValue<E>> withIndex() => enumerate<E>(this);
+  Iterable<IndexedValue<E>> withIndex() => IndexingIterable<E>(this);
 
   /// Returns a new lazy [Iterable] with all elements that satisfy the
   /// predicate [test].
@@ -211,7 +211,7 @@ extension GeneralIterable<E> on Iterable<E> {
   /// throwing an [ArgumentError] if there are any `null` elements.
   Iterable<E> requireNoNulls() {
     for (final ele in this) {
-      checkNotNull(ele, message: 'null element found in $this.');
+      requireNotNull(ele, lazyMessage: () => 'null element found in $this.');
     }
     return this;
   }
@@ -246,7 +246,6 @@ extension GeneralIterable<E> on Iterable<E> {
   /// having distinct keys returned by the given [selector] function.
   ///
   /// The elements in the resulting [Iterable] are in the same order as they were in the source [Iterable].
-  /// @sample samples.collections.Collections.Transformations.distinctAndDistinctBy
   Iterable<E> distinctBy<K>(K Function(E) selector) {
     return DistinctIterable<E, K>(this, selector);
   }

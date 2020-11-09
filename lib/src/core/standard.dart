@@ -47,6 +47,6 @@ void repeat(int times, Function(int) action) {
 /// Always throws [UnimplementedError] stating that operation is not implemented.
 /// [reason] a string explaining why the implementation is missing.
 // ignore: non_constant_identifier_names
-void TODO([String reason]) => throw UnimplementedError(isNotEmpty(reason)
+void TODO([String reason]) => throw UnimplementedError(!reason.isNullOrEmpty()
     ? 'An operation is not implemented: $reason'
     : 'An operation is not implemented.');

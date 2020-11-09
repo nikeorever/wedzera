@@ -70,15 +70,15 @@ class Predicates {
   ///
   /// Throws an [ArgumentError] if the given [target] is `null`.
   static Predicate<T> inCollection<T>(Iterable<T> target) {
-    checkNotNull(target);
+    requireNotNull(target);
     return (t) => runCatching(() => target.contains(t)).getOrDefault(false);
   }
 
   /// Returns the composition of a [transformation] and a [predicate].
   static Predicate<A> compose<A, B>(
       Predicate<B> predicate, Transformation<A, B> transformation) {
-    checkNotNull(predicate);
-    checkNotNull(transformation);
+    requireNotNull(predicate);
+    requireNotNull(transformation);
     return (a) => predicate(transformation(a));
   }
 

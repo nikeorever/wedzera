@@ -105,7 +105,7 @@ void main() {
     });
 
     test('withIndex', () {
-      expect(['A', 'B', 'C'].withIndex().first.index, equals(0));
+      expect(['A', 'B', 'C'].withIndex().last.index, equals(2));
     });
 
     test('none', () {

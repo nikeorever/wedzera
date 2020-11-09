@@ -27,8 +27,8 @@ extension NumRanges<T extends num> on T {
   ///
   /// return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
   T coerceIn(T minimumValue, T maximumValue) {
-    checkArgument(minimumValue <= maximumValue,
-        message:
+    require(minimumValue <= maximumValue,
+        lazyMessage: () =>
             'Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.');
     if (this < minimumValue) return minimumValue;
     if (this > maximumValue) return maximumValue;
@@ -64,8 +64,8 @@ extension ComparableRanges<T extends Comparable<T>> on T {
   /// return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
   T coerceIn(T minimumValue, T maximumValue) {
     if (minimumValue != null && maximumValue != null) {
-      checkArgument(minimumValue.compareTo(maximumValue) <= 0,
-          message:
+      require(minimumValue.compareTo(maximumValue) <= 0,
+          lazyMessage: () =>
               'Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.');
       if (compareTo(minimumValue) < 0) return minimumValue;
       if (compareTo(maximumValue) > 0) return maximumValue;
