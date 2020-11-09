@@ -1,7 +1,7 @@
 name: wedzera
 description: >-
   Wedzera is a tool library for Flutter and Dart.
-version: 1.0.0
+version: 1.1.0-SNAPSHOT
 homepage: https://github.com/nikeorever/wedzera
 
 environment:
